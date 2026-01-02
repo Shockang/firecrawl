@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "firecrawl-standalone"
+version = "0.1.0"
+description = "Standalone web scraper for easy integration into Python projects"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Firecrawl Team"}
+]
+keywords = ["scraper", "web-scraping", "crawler", "markdown"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "playwright>=1.40.0",
+    "markdownify>=0.11.6",
+    "beautifulsoup4>=4.12.0",
+    "httpx>=0.25.0",
+    "aiohttp>=3.9.0",
+    "pydantic>=2.0.0",
+    "urllib3>=2.0.0",
+    "lxml>=4.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+
+[project.scripts]
+firecrawl = "firecrawl.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/mendableai/firecrawl"
+Repository = "https://github.com/mendableai/firecrawl"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
