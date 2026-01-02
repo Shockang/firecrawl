@@ -104,7 +104,30 @@ Remove non-core code and documentation
 ## Important Notes
 
 - The existing `apps/python-sdk/` is a **client SDK** for the API, not a standalone scraper
-- Core scraping logic is in TypeScript/Node.js - needs porting to Python
+- **STANDALONE VERSION COMPLETE**: A full standalone Python scraper has been created in `firecrawl-standalone/`
+- The standalone version includes:
+  - Single URL scraping (HTTP and Playwright engines)
+  - Multi-page crawling with queue management
+  - HTML to Markdown conversion
+  - robots.txt respect
+  - URL filtering and depth control
+  - CLI interface
+  - Full documentation and examples
+- **Installation**: `cd firecrawl-standalone && pip install -e .`
+- **Usage**: See `firecrawl-standalone/README.md` for documentation
+- **Testing**: Try `python firecrawl-standalone/examples/basic_scrape.py`
 - Multiple services (Go, Playwright) can be run as external processes
-- The project uses BullMQ (Node.js) for job queues - needs Python equivalent
+- The project uses BullMQ (Node.js) for job queues - needs Python equivalent (not needed for standalone)
 - Consider using existing Python scraping libraries (scrapy, selenium) as foundation
+
+## Recent Progress (Latest Iteration)
+
+✅ **COMPLETED**: Standalone Python scraper implementation
+- Created `firecrawl-standalone/` directory with complete package
+- Implemented HTTP and Playwright engines
+- Built multi-page crawler with link discovery
+- Added robots.txt handling and URL filtering
+- Created CLI interface with scrape/crawl commands
+- Wrote comprehensive documentation and examples
+- Added basic test suite
+- Ready to use! See `firecrawl-standalone/IMPLEMENTATION_SUMMARY.md` for details
