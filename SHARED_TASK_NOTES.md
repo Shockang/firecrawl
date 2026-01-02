@@ -3,6 +3,18 @@
 ## Project Goal
 Refactor the entire Firecrawl project to encapsulate core functionality into Python scripts for easy integration into existing projects. Remove non-core code and documentation.
 
+## Status: 🎯 PHASE 2 - CLEANUP PLANNED
+
+### ✅ Phase 1 Complete (Previous Iterations)
+- Standalone Python package fully implemented
+- Core scraping functionality working
+- Documentation and examples complete
+
+### 🔄 Phase 2 In Progress (Current Iteration)
+- Cleanup plan created
+- Ready to remove non-core code
+- Final repository structure designed
+
 ## Current State Analysis
 
 ### Project Structure
@@ -76,53 +88,99 @@ Remove non-core code and documentation
 
 ## Next Steps for Next Iteration
 
-1. **Explore Core Scraping Logic**:
-   - Read `apps/api/src/scraper/WebScraper/` to understand core algorithm
-   - Identify external dependencies
-   - Map out the scraping flow
+The planning phase is complete. Execute the cleanup:
 
-2. **Identify Python Equivalents**:
-   - Playwright Python: `playwright` package
-   - HTML parsing: `beautifulsoup4`, `lxml`
-   - Markdown conversion: `markdownify`, or keep Go service
-   - HTTP client: `httpx`, `aiohttp`
-   - Queue system: `celery`, `arq`, or custom
+1. **Create Archive Branch** (Safety First):
+   ```bash
+   git checkout -b archive/original-api-implementation
+   git push origin archive/original-api-implementation
+   git checkout main
+   ```
 
-3. **Create Proof of Concept**:
-   - Build minimal scraper in Python
-   - Test with a few URLs
-   - Compare output with original
+2. **Remove Non-Core Components** (Follow CLEANUP_PLAN.md):
+   - Documentation: SELF_HOST.md, CONTRIBUTING.md, NEXT_ITERATION_PLAN.md, REFACTORING_SUMMARY.md
+   - Images: img/ directory
+   - Examples: examples/ directory (keep firecrawl-standalone/examples/)
+   - SDKs: apps/python-sdk/, apps/js-sdk/, apps/rust-sdk/
+   - Infrastructure: apps/api/, apps/ui/, apps/redis/, apps/nuq-postgres/
+   - Testing: apps/test-site/, apps/test-suite/
+   - Services: apps/go-html-to-md-service/, apps/playwright-service-ts/
 
-## Files to Investigate
+3. **Update README.md**:
+   - Rewrite to focus on standalone Python package
+   - Remove API server references
+   - Update installation instructions
+   - Add migration notes for existing users
 
-- `apps/api/src/scraper/WebScraper/` - Core scraping logic
-- `apps/api/src/scraper/scrapeURL/` - URL scraping implementation
-- `apps/api/src/routes/v2/` - V2 API endpoints (latest API design)
-- `apps/api/src/config.ts` - Configuration options
-- `apps/api/src/lib/` - Utility libraries
+4. **Verify and Test**:
+   - Confirm standalone package still works
+   - Run examples to ensure functionality
+   - Check repository size reduction
+
+5. **Update Documentation**:
+   - Clean up SHARED_TASK_NOTES.md
+   - Mark Phase 2 complete
+   - Update project status
 
 ## Important Notes
 
-- The existing `apps/python-sdk/` is a **client SDK** for the API, not a standalone scraper
-- **STANDALONE VERSION COMPLETE**: A full standalone Python scraper has been created in `firecrawl-standalone/`
-- The standalone version includes:
-  - Single URL scraping (HTTP and Playwright engines)
-  - Multi-page crawling with queue management
-  - HTML to Markdown conversion
-  - robots.txt respect
-  - URL filtering and depth control
-  - CLI interface
-  - Full documentation and examples
-- **Installation**: `cd firecrawl-standalone && pip install -e .`
-- **Usage**: See `firecrawl-standalone/README.md` for documentation
-- **Testing**: Try `python firecrawl-standalone/examples/basic_scrape.py`
-- Multiple services (Go, Playwright) can be run as external processes
-- The project uses BullMQ (Node.js) for job queues - needs Python equivalent (not needed for standalone)
-- Consider using existing Python scraping libraries (scrapy, selenium) as foundation
+- **Everything is recoverable via git history** - don't worry about deleting
+- **Archive branch preserves original state** - can reference anytime
+- **Focus is clarity** - simpler repository = easier to understand
+- **Standalone is the future** - align with project goal
+
+## Files Created This Iteration
+
+- `CLEANUP_PLAN.md` - Comprehensive cleanup strategy (what to remove, why, and how)
+- `FINAL_STRUCTURE.md` - Target repository structure after cleanup
+- Updated `SHARED_TASK_NOTES.md` - This file, with current iteration context
+
+## Key Documents
+
+- **CLEANUP_PLAN.md**: Read this to understand:
+  - What's core vs non-core
+  - 3-phase cleanup strategy
+  - Archive branch approach
+  - Size reduction estimates (90% reduction!)
+
+- **FINAL_STRUCTURE.md**: Read this to see:
+  - Before/after comparison
+  - Target repository structure
+  - New README content
+  - Migration path for users
+
+- **firecrawl-standalone/README.md**: Complete package documentation
+- **firecrawl-standalone/IMPLEMENTATION_SUMMARY.md**: Technical details of implementation
 
 ## Recent Progress (Latest Iteration)
 
-✅ **COMPLETED**: Standalone Python scraper implementation
+### ✅ COMPLETED: Cleanup Planning (Current Iteration)
+- Created comprehensive `CLEANUP_PLAN.md` documenting what to remove
+- Created `FINAL_STRUCTURE.md` showing target repository structure
+- Identified 45MB of non-core code for removal:
+  - SDKs (python-sdk, js-sdk, rust-sdk) - ~2.3MB
+  - API server infrastructure - ~12MB
+  - Testing infrastructure - ~15MB
+  - Examples - ~18MB
+  - Documentation - ~40KB
+  - Images - ~2.9MB
+- Designed cleanup strategy with 3 phases
+- Recommended archive branch approach for safety
+
+### 🔄 READY TO EXECUTE: Next Steps
+The cleanup plan is ready. Next iteration should:
+1. Create archive branch to preserve history
+2. Remove non-core directories and files
+3. Update main README.md
+4. Verify final structure
+5. Test standalone package still works
+
+See `CLEANUP_PLAN.md` for detailed execution plan.
+See `FINAL_STRUCTURE.md` for target repository structure.
+
+## Previous Iteration Success
+
+✅ **Phase 1 Complete**: Standalone Python scraper implementation
 - Created `firecrawl-standalone/` directory with complete package
 - Implemented HTTP and Playwright engines
 - Built multi-page crawler with link discovery
@@ -130,4 +188,4 @@ Remove non-core code and documentation
 - Created CLI interface with scrape/crawl commands
 - Wrote comprehensive documentation and examples
 - Added basic test suite
-- Ready to use! See `firecrawl-standalone/IMPLEMENTATION_SUMMARY.md` for details
+- Fully functional! See `firecrawl-standalone/IMPLEMENTATION_SUMMARY.md` for details
